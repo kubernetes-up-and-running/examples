@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: parse-server
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: parse-server
+    spec:
+      containers:
+      - name: parse-server
+        image: ${DOCKER_USER}/parse-server
+        env:
+        - name: DATABASE_URI
+          value: "mongodb://mongo-0.mongo:27017,\
+            mongo-1.mongo:27017,mongo-2.mongo\
+            :27017/dev?replicaSet=rs0"
+        - name: APP_ID
+          value: my-app-id
+        - name: MASTER_KEY
+          value: my-master-key
