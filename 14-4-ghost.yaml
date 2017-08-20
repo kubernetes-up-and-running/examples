@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ghost
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: ghost
+  template:
+    metadata:
+      labels:
+        run: ghost
+    spec:
+      containers:
+      - image: ghost
+        name: ghost
+        command:
+        - sh
+        - -c
+        - cp /ghost-config/config.js /var/lib/ghost/config.js
+          && /entrypoint.sh npm start
+        volumeMounts:
+        - mountPath: /ghost-config
+          name: config
+      volumes:
+      - name: config
+        configMap:
+          defaultMode: 420
+          name: ghost-config
