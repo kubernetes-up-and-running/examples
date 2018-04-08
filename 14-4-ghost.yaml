@@ -19,7 +19,7 @@ spec:
         - sh
         - -c
         - cp /ghost-config/ghost-config.js /var/lib/ghost/config.js
-          && /entrypoint.sh npm start
+          && docker-entrypoint.sh node current/index.js
         volumeMounts:
         - mountPath: /ghost-config
           name: config
