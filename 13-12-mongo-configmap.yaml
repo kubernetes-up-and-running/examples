@@ -46,6 +46,4 @@ data:
     fi
     echo "initialized"
 
-    while true; do
-      sleep 3600
-    done
+    sleep infinity
