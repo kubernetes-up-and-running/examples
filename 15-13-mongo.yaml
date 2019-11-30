@@ -1,10 +1,13 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongo
 spec:
   serviceName: "mongo"
   replicas: 3
+  selector:
+    matchLabels:
+      app: mongo
   template:
     metadata:
       labels:

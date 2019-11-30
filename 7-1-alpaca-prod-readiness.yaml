@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: alpaca
+    env: prod
+    ver: "1"
+  name: alpaca-prod
+spec:
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: alpaca
+      env: prod
+      ver: "1"
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: alpaca
+        env: prod
+        ver: "1"
+    spec:
+      containers:
+      - image: gcr.io/kuar-demo/kuard-amd64:blue
+        imagePullPolicy: IfNotPresent
+        name: alpaca-prod
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /ready
+            port: 8080
+            scheme: HTTP
+          periodSeconds: 2
+          successThreshold: 1
+          timeoutSeconds: 1
