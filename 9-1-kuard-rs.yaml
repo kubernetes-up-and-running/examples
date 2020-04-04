@@ -1,9 +1,15 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
+  labels:
+    app: kuard
   name: kuard
 spec:
-  replicas: 1
+  replicas: 10
+  selector:
+    matchLabels:
+      app: kuard
+      version: "2"
   template:
     metadata:
       labels:

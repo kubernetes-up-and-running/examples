@@ -1,3 +1,4 @@
+# TODO fix image name (blue) in book
 apiVersion: batch/v1
 kind: Job
 metadata:
