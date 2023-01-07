@@ -1,11 +1,14 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: "DaemonSet"
 metadata:
   labels:
     app: nginx
     ssd: "true"
-  name: nginx-fast-storage
+  name: nginx
 spec:
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
