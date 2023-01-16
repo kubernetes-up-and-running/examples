@@ -8,7 +8,7 @@ spec:
   - ReadWriteMany
   resources:
     requests:
-      storage: 0.5Gi
+      storage: 1Gi
   selector:
     matchLabels:
       volume: my-volume

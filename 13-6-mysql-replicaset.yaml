@@ -21,7 +21,7 @@ spec:
         resources:
           requests:
             cpu: 1
-            memory: 1Gi
+            memory: 2Gi
         env:
         # Environment variables are not a best practice for security,
         # but we're using them here for brevity in the example.
