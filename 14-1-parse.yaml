@@ -1,18 +1,21 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: parse-server
   namespace: default
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      name: parse-server
   template:
     metadata:
       labels:
-        run: parse-server
+        name: parse-server
     spec:
       containers:
       - name: parse-server
-        image: ${DOCKER_USER}/parse-server
+        image: monarene/parse-server
         env:
         - name: PARSE_SERVER_DATABASE_URI
           value: "mongodb://mongo-0.mongo:27017,\
