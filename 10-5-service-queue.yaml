@@ -5,7 +5,7 @@ metadata:
     app: work-queue
     component: queue
     chapter: jobs
-  name: queue
+  name: queue-cboateng
 spec:
   ports:
   - port: 8080
