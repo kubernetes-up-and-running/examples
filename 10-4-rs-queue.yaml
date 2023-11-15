@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   labels:
@@ -8,6 +8,11 @@ metadata:
   name: queue
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: work-queue
+      component: queue
+      chapter: jobs
   template:
     metadata:
       labels:
