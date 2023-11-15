@@ -19,6 +19,6 @@ spec:
             mongo-1.mongo:27017,mongo-2.mongo\
             :27017/dev?replicaSet=rs0"
         - name: PARSE_SERVER_APP_ID
-          value: my-app-id
+          value: "my-app-id"
         - name: PARSE_SERVER_MASTER_KEY
-          value: my-master-key
+          value: "my-master-key"
