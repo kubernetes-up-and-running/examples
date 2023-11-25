@@ -4,4 +4,4 @@ metadata:
   name: external-database
 spec:
   type: ExternalName
-  externalName: "database.company.com
+  externalName: database.company.com

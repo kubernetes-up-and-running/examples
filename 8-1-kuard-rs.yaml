@@ -1,6 +1,9 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
+  labels:
+    app: kuard
+    version: "2"
   name: kuard
   labels:
     app: kuard

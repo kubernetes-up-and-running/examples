@@ -5,6 +5,8 @@ metadata:
   labels:
     volume: my-volume
 spec:
+  accessModes:
+  - ReadWriteMany
   capacity:
     storage: 1Gi
   nfs:
