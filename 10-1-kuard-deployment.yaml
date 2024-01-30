@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuard
+  labels:
+    run: kuard
+spec:
+  selector:
+    matchLabels:
+      run: kuard
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: kuard
+    spec:
+      containers:
+      - name: kuard
+        image: gcr.io/kuar-demo/kuard-amd64:blue
