@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: amicontained
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/amicontained: "runtime/default"
+spec:
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 3000
+    fsGroup: 2000
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - image: jess/amicontained:v0.4.9
+      name: amicontained
+      command: [ "/bin/sh", "-c", "--" ]
+      args: [ "amicontained" ]
+      securityContext:
+        capabilities:
+            add: ["SYS_TIME"]
+            drop: ["NET_BIND_SERVICE"]
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        privileged: false
