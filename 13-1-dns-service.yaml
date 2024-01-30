@@ -1,7 +1,0 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: external-database
-spec:
-  type: ExternalName
-  externalName: database.company.com

@@ -1,7 +1,0 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: external-ip-database
-spec:
-  ports:
-  - port: 3306

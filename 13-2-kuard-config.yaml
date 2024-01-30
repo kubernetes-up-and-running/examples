@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kuard-config
+spec:
+  containers:
+    - name: test-container
+      image: gcr.io/kuar-demo/kuard-amd64:blue
+      imagePullPolicy: Always
+      command:
+        - "/kuard"
+        - "$(EXTRA_PARAM)"
+      env:
+        # An example of an environment variable used inside the container
+        - name: ANOTHER_PARAM
+          valueFrom:
+            configMapKeyRef:
+              name: my-config
+              key: another-param
+        # An example of an environment variable passed to the command to start
+        # the container (above).
+        - name: EXTRA_PARAM
+          valueFrom:
+            configMapKeyRef:
+              name: my-config
+              key: extra-param
+      volumeMounts:
+        # Mounting the ConfigMap as a set of files
+        - name: config-volume
+          mountPath: /config
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-config
+  restartPolicy: Never
