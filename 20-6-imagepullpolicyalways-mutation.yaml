@@ -1,0 +1,19 @@
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: Assign
+metadata:
+  name: demo-image-pull-policy
+spec:
+  applyTo:
+  - groups: [""]
+    kinds: ["Pod"]
+    versions: ["v1"]
+  match:
+    scope: Namespaced
+    kinds:
+    - apiGroups: ["*"]
+      kinds: ["Pod"]
+    excludedNamespaces: ["system"]
+  location: "spec.containers[name:*].imagePullPolicy"
+  parameters:
+    assign:
+      value: Always

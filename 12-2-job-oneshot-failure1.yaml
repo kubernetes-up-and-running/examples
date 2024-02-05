@@ -1,12 +1,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: parallel
+  name: oneshot
   labels:
     chapter: jobs
 spec:
-  parallelism: 5
-  completions: 10
   template:
     metadata:
       labels:
@@ -14,10 +12,13 @@ spec:
     spec:
       containers:
       - name: kuard
-        image: gcr.io/kuar-demo/kuard-amd64:1
+        image: gcr.io/kuar-demo/kuard-amd64:blue
         imagePullPolicy: Always
+        command:
+        - "/kuard"
         args:
         - "--keygen-enable"
         - "--keygen-exit-on-complete"
-        - "--keygen-num-to-gen=10"
+        - "--keygen-exit-code=1"
+        - "--keygen-num-to-gen=3"
       restartPolicy: OnFailure

@@ -1,0 +1,15 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedRepos
+metadata:
+  name: repo-is-kuar-demo
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+    namespaces:
+      - "default"
+  parameters:
+    repos:
+      - "gcr.io/kuar-demo/"
