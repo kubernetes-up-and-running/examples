@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: 1DaemonSet
+kind: DaemonSet
 metadata:
   labels:
     app: nginx
